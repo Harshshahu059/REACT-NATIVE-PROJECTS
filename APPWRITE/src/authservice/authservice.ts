@@ -2,8 +2,10 @@ import { Client, Account, ID } from "appwrite";
 import Config from "react-native-config";
 
 
-const endPoint: string = Config.APIEndpoint!;
-const projectId: string = Config.APIEndpoint!;
+const endPoint='https://fra.cloud.appwrite.io/v1';
+const projectId='6911d5c100104f42a1bb'
+
+console.log(endPoint,projectId,Config.APPWRITE_ENDPOINT)
 
 
 const client = new Client()
@@ -18,9 +20,9 @@ type login = {
     password: string
 }
 
-class AuthService {
+class AuthService {    
     account;
-    constructor(name: string) {
+    constructor() {
         client
             .setProject(projectId)
             .setEndpoint(endPoint);
