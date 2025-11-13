@@ -1,5 +1,8 @@
 import { Client, Account, ID } from "appwrite";
 import Config from "react-native-config";
+// import { AppWriteContext } from "./AppwriteContext";
+// import { useContext } from "react";
+
 
 
 const endPoint='https://fra.cloud.appwrite.io/v1';
@@ -24,12 +27,14 @@ class AuthService {
     account;
     constructor() {
         client
-            .setProject(projectId)
-            .setEndpoint(endPoint);
+        .setProject(projectId)
+        .setEndpoint(endPoint);
         this.account = new Account(client);
     }
-
+    
     async createNewUser({ name, email, password }: createaccount) {
+        // const {isLoggedin,setisLoggedin,appWrite}=useContext(AppWriteContext)
+        console.log(name,email,password)
         try {
             const user = await this.account.create({
                 userId: ID.unique(),
@@ -39,9 +44,7 @@ class AuthService {
             });
             console.log(user)
             if(user){
-                this.login({email,password})
-            }else{
-                return user
+                return this.login({email,password})
             }
         } catch (e) {
             console.error(e)

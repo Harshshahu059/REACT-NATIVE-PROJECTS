@@ -19,10 +19,19 @@ const AuthStack = () => {
             <stack.Screen
                 name="Login"
                 component={Login}
+                options={{
+                        animation:"slide_from_right",
+                        headerTitleAlign:"center"
+                    }}
             />
             <stack.Screen
                 name="SignIn"
                 component={SignIn}
+                options={{
+                        title:'Signup',
+                        animation:"slide_from_right",
+                        headerTitleAlign:"center"
+                    }}
             />
         </stack.Navigator>
     )
