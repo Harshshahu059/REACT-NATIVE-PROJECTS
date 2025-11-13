@@ -13,15 +13,18 @@ const Route = ():JSX.Element => {
   useEffect(() => {
       setLoading(true)
       appWrite.getCurrentUser()
-      .then(()=>{
+      .then(res=>{
         setLoading(false)
-        setisLoggedin(true)
+        if(res){
+          setisLoggedin(true)
+        }
       })
-      .catch(()=>{
+      .catch(_=>{
+        console.log("res--->",appWrite.getCurrentUser())
         setLoading(false)
         setisLoggedin(false)
       })
-  }, [appWrite])
+  }, [appWrite,setisLoggedin])
 
   if(loading){
     return(
@@ -32,7 +35,6 @@ const Route = ():JSX.Element => {
   return (
     <NavigationContainer>
       {isLoggedin?<AppStack/>:<AuthStack/>}
-      {/* <AppStack/> */}
     </NavigationContainer>
   )
 }
