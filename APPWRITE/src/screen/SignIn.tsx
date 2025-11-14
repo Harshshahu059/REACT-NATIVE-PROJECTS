@@ -44,6 +44,7 @@ const SignIn = ({ navigation }: SignIn) => {
         value={name}
         onChangeText={(e) => setName(e)}
         style={styles.input}
+        autoComplete="name"
       />
       <TextInput
         placeholder='Email'
@@ -51,6 +52,8 @@ const SignIn = ({ navigation }: SignIn) => {
         value={email}
         onChangeText={(e) => setEmail(e)}
         style={styles.input}
+        autoComplete="email"
+        autoCapitalize="none"
       />
       <TextInput
         placeholder='Password'
@@ -58,6 +61,7 @@ const SignIn = ({ navigation }: SignIn) => {
         value={password}
         onChangeText={(e) => setPassword(e)}
         style={styles.input}
+        autoComplete="new-password"
       />
       <TextInput
         placeholder='Repeat password'

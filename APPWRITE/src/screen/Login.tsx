@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react'
 import { AppWriteContext } from '../authservice/AppwriteContext'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { RootAuthStack } from '../Routes/AuthStack'
+import Snackbar from 'react-native-snackbar'
 
 type Login=NativeStackScreenProps<RootAuthStack,'Login'>
 
@@ -18,7 +19,14 @@ const Login = ({navigation}:Login) => {
      appWrite.login({email,password})
      .then(res=>{
        if(res){
-         setisLoggedin(true)
+         const data =setisLoggedin(true)
+         console.log(data)
+         Snackbar.show({
+                    text: 'Login Succesfully.',
+                    duration: Snackbar.LENGTH_SHORT,
+                    textColor:"#efefefff",
+                    backgroundColor:"#0caa11ff"
+                });
        }
      }).catch((e)=>
      console.log(e))
@@ -41,7 +49,9 @@ const Login = ({navigation}:Login) => {
         placeholderTextColor={'gray'}
         value={email}
         onChangeText={(e)=>setEmail(e)} 
-        style={styles.input}
+        style={styles.input}        
+        autoComplete="email"
+        autoCapitalize="none"
         />
         <TextInput
         placeholder='password'
@@ -49,6 +59,7 @@ const Login = ({navigation}:Login) => {
         value={password}
         onChangeText={(e)=>setPassword(e)} 
         style={styles.input}
+        autoComplete="password"
         />
  
        <TouchableOpacity 
